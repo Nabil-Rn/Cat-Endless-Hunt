@@ -1,0 +1,174 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header styles */
+header {
+    background-color: #f0f8ff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header.default-theme {
+    background-color: #f0f8ff;
+}
+
+header.dark-theme {
+    background-color: #555555;
+}
+
+header.sea-theme {
+    background-color: #98d9f5;
+}
+
+header.leaves-theme {
+    background-color: #a0f0a7;
+}
+
+/* Menu styles based on body theme */
+body.default-theme #menu {
+    background-color: #dfeff6;
+}
+
+body.dark-theme #menu {
+    background-color: #333;
+    color: #fff;
+}
+
+body.sea-theme #menu {
+    background-color: #87cefa;
+    color: #005f6b;
+}
+
+body.leaves-theme #menu {
+    background-color: #e8f5e9;
+    color: #33691e;
+}
+
+
+/* Hero section */
+#hero {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#titleImage {
+    max-width: 200px; /* Limits the maximum width of the image */
+    height: auto; /* Maintains the aspect ratio */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; /* Center the image */
+    display: block;
+}
+
+@media (max-width: 768px) {
+    #titleImage {
+        width: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+    #titleImage {
+        width: 60%;
+    }
+}
+
+/* Theme Selector and Full-Screen Button */
+#themeSelector {
+    margin-top: 20px;
+}
+
+#fullscreenButtonContainer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#fullscreenButton {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#fullscreenButton:hover {
+    background-color: #45a049;
+}
+
+/* Menu */
+#menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Allow menu to grow and take available space */
+    padding: 20px;
+}
+
+#menu h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#menu div {
+    margin: 10px 0;
+}
+
+#menu select, #menu button, #menu input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+#sizePreview {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: url('assets/images/rat.png') no-repeat center;
+    background-size: contain;
+    margin-top: 5px;
+}
+
+/* Ensure canvas displays properly */
+canvas {
+    display: none;
+    background-color: #e8f5ff;
+    z-index: 10;
+    position: relative;
+}
+
+/* footer styles */
+footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+footer.default-theme {
+    background-color: #f0f8ff;
+}
+
+footer.dark-theme {
+    background-color: #555555;
+}
+
+footer.sea-theme {
+    background-color: #98d9f5;
+}
+
+footer.leaves-theme {
+    background-color: #a0f0a7;
+}

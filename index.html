@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat's Endless Hunt</title>
+    <meta name="description" content="Cat's Endless Hunt - A fun and engaging game for your feline friends!">
+    <meta name="keywords" content="cat game, pet game, interactive game, HTML5">
+    <meta name="author" content="Nabil">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="default-theme">
+    <header>
+        <div id="hero">
+            <img src="assets/images/cat-title.png" alt="Cat Game Title" id="titleImage">
+        </div>
+
+        <div id="themeSelector">
+            <label for="theme">Choose a theme:</label>
+            <select id="theme">
+                <option value="default">Default</option>
+                <option value="dark">Dark Mode</option>
+                <option value="sea">Sea Mode</option>
+                <option value="leaves">Leaves Mode</option>
+            </select>
+        </div>
+
+        <div id="fullscreenButtonContainer">
+            <button id="fullscreenButton">Go Full Screen</button>
+        </div>
+    </header>
+
+    <div id="menu">
+        <h1>Cat's Endless Hunt</h1>
+        <div>
+            <label for="target">Choose a target:</label>
+            <select id="target">
+                <option value="rat">Rat</option>
+                <option value="bug">Bug</option>
+                <option value="butterfly">Butterfly</option>
+                <option value="fish">Fish</option>
+            </select>
+        </div>
+        <div>
+            <label for="music">Choose music:</label>
+            <select id="music">
+                <option value="none">No Music</option>
+                <option value="track1">Wave</option>
+                <option value="track2">Bird Flap</option>
+            </select>
+            <button id="previewMusic">▶️ Preview Music</button>
+        </div>
+        <div>
+            <label for="sizeSlider">Set target size:</label>
+            <input id="sizeSlider" type="range" min="30" max="100" value="50">
+            <div id="sizePreview"></div>
+        </div>
+        <button id="start">Start Game</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <footer>
+        <p>Created by Nabil. Assets from Pixabay, Openclipart, and others.</p>
+    </footer>
+
+    <audio id="bgMusic" loop></audio>
+    <audio id="previewAudio"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
