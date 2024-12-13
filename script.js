@@ -9,6 +9,30 @@ const bgMusic = document.getElementById('bgMusic');
 const previewAudio = document.getElementById('previewAudio');
 const previewMusicButton = document.getElementById('previewMusic');
 
+let targetType = 'rat';
+let targetSize = 200;
+let targets = [];
+let running = false;
+const hitboxBuffer = 20; // Extra clickable area around the target
+
+const targetImages = {
+    rat: 'assets/images/rat.png',
+    bug: 'assets/images/bug.png',
+    butterfly: 'assets/images/butterfly.png',
+    fish: 'assets/images/fish.png'
+};
+const targetSounds = {
+    rat: 'assets/sounds/rat.mp3',
+    bug: 'assets/sounds/bug.mp3',
+    butterfly: 'assets/sounds/cricket.mp3',
+    fish: 'assets/sounds/bell.mp3'
+};
+
+const musicTracks = {
+    track1: 'assets/sounds/wave.mp3',
+    track2: 'assets/sounds/bird-flap.mp3'
+};
+
 window.onload = () => {
     const savedTheme = localStorage.getItem('theme') || 'default';
     document.getElementById('theme').value = savedTheme;
@@ -51,29 +75,6 @@ function updateCanvasBackground(theme) {
         canvas.style.backgroundColor = '#e8f5e9';
     }
 }
-
-let targetType = 'rat';
-let targetSize = 200;
-let targets = [];
-let running = false;
-
-const targetImages = {
-    rat: 'assets/images/rat.png',
-    bug: 'assets/images/bug.png',
-    butterfly: 'assets/images/butterfly.png',
-    fish: 'assets/images/fish.png'
-};
-const targetSounds = {
-    rat: 'assets/sounds/rat.mp3',
-    bug: 'assets/sounds/bug.mp3',
-    butterfly: 'assets/sounds/cricket.mp3',
-    fish: 'assets/sounds/bell.mp3'
-};
-
-const musicTracks = {
-    track1: 'assets/sounds/wave.mp3',
-    track2: 'assets/sounds/bird-flap.mp3'
-};
 
 document.getElementById('target').addEventListener('change', (e) => {
     targetType = e.target.value;
@@ -171,8 +172,8 @@ function spawnTarget() {
     const img = new Image();
     img.src = targetImages[targetType];
     const target = {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * (canvas.width - targetSize),
+        y: Math.random() * (canvas.height - targetSize),
         dx: (Math.random() - 0.5) * 4,
         dy: (Math.random() - 0.5) * 4,
         angle: 0,
@@ -204,12 +205,13 @@ function drawTargets() {
 }
 
 canvas.addEventListener('click', (event) => {
-    const clickX = event.clientX;
-    const clickY = event.clientY;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const clickY = event.clientY - rect.top;
 
     targets = targets.filter(target => {
-        const isHit = clickX >= target.x && clickX <= target.x + targetSize &&
-                      clickY >= target.y && clickY <= target.y + targetSize;
+        const isHit = clickX >= (target.x - hitboxBuffer) && clickX <= (target.x + parseInt(targetSize, 10) + hitboxBuffer) &&
+                      clickY >= (target.y - hitboxBuffer) && clickY <= (target.y + parseInt(targetSize, 10) + hitboxBuffer);
 
         if (isHit) {
             const sound = new Audio(targetSounds[targetType]);
